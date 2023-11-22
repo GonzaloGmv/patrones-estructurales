@@ -279,6 +279,7 @@ class ConcreteBuilder(Builder):
 
         while True:
             print("Seleccione hasta 3 extras gourmet para su pizza (ingrese números separados por comas, máximo 3):")
+            print("Precio de cada extra: 2€")
             
             for i, extra in enumerate(extras, 1):
                 print(f"{i}. {extra}")

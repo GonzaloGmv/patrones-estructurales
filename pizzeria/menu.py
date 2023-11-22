@@ -78,16 +78,20 @@ def pedir_menu():
             while True:
                 eleccion_menu = input("\nElige un número de menú: ")
                 if eleccion_menu == "1":
-                    menu_bbq.agregar(Elemento(elegir_bebida(), 1))
+                    menu = menu_bbq
+                    menu.agregar(Elemento(elegir_bebida(), 1))
                     break
                 elif eleccion_menu == "2":
-                    menu_basico.agregar(Elemento(elegir_bebida(), 1))
+                    menu = menu_basico
+                    menu.agregar(Elemento(elegir_bebida(), 1))
                     break
                 elif eleccion_menu == "3":
-                    menu_queso.agregar(Elemento(elegir_bebida(), 1))
+                    menu = menu_queso
+                    menu.agregar(Elemento(elegir_bebida(), 1))
                     break
                 elif eleccion_menu == "4":
-                    menu_carbonara.agregar(Elemento(elegir_bebida(), 1))
+                    menu = menu_carbonara
+                    menu.agregar(Elemento(elegir_bebida(), 1))
                     break
                 else:
                     print("Opción no válida. Intenta de nuevo.")
@@ -116,7 +120,7 @@ def pedir_menu():
             break
         else:
             print("Opción no válida. Intenta de nuevo.")
+    return menu
 
-    # Calcular y mostrar el precio total del menú
-    precio_total = menu.obtener_precio()
-    print(f"\nPrecio Total del Menú: {precio_total} €")
+def precio(menu):
+    return menu.obtener_precio()
