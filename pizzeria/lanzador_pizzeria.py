@@ -1,5 +1,5 @@
 import pizzeria.patron_builder as patron_builder
-import pizzeria.guardar_pedido as guardar_pedido
+import pizzeria.pedido as guardar_pedido
 import pizzeria.cliente as cliente
 
 def main_pizzeria():
