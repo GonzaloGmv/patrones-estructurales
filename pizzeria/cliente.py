@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import warnings
 
 # Clase Cliente
 class Cliente():
@@ -56,7 +57,7 @@ class Cliente():
             n_pedido = pedido.numero_pedido() -1
         else:
             n_pedido = pedido.numero_pedido(individual) -1
-            
+        n_pedido = str(n_pedido)
         user_index = self.clientes_df[self.clientes_df['Usuario'] == self.usuario].index[0]
         pedidos_anteriores = self.clientes_df.at[user_index, tipo]
         # Verifica si el cliente tiene pedidos anteriores
@@ -65,8 +66,11 @@ class Cliente():
         else:
             nuevos_pedidos = n_pedido
 
+        # Suprime temporalmente las advertencias FutureWarning
+        warnings.simplefilter(action='ignore', category=FutureWarning)
         # Actualiza la columna 'Pedidos' con los nuevos pedidos
         self.clientes_df.at[user_index, tipo] = nuevos_pedidos
+        warnings.resetwarnings()
 
         # Guarda el DataFrame actualizado en el archivo CSV
         self.clientes_df.to_csv('pizzeria/clientes.csv', index=False)
