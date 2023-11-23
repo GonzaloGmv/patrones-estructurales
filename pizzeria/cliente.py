@@ -50,7 +50,7 @@ class Cliente():
             else:
                 print('Opción no válida. Intenta de nuevo.')
     
-    # Funcion que obtiene el numero de pedido y lo guarda en el archivo CSV
+    # Funcion que obtiene el numero de pedido de la pizza y lo guarda en el archivo CSV
     def pedido_pizzas(self, pedido):
         # Obtiene el numero de pedido del pedido recientemente guardado
         n_pedido = pedido.numero_pedido() -1
@@ -68,7 +68,7 @@ class Cliente():
         # Guarda el DataFrame actualizado en el archivo CSV
         self.clientes_df.to_csv('pizzeria/clientes.csv', index=False)
     
-    # Funcion que obtiene los pedidos anteriores del cliente y devuelve los ingredientes de estos pedidos
+    # Funcion que obtiene las pizzas anteriores del cliente y devuelve los ingredientes de estas
     def acceder_pizzas(self, pedido):
         # Obtiene los pedidos anteriores del cliente
         user_index = self.clientes_df[self.clientes_df['Usuario'] == self.usuario].index[0]

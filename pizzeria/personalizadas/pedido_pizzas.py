@@ -9,7 +9,7 @@ class Pedido():
     # Funcion que genera el numero de pedido
     def numero_pedido(self):
         try:
-            pedidos_df = pd.read_csv('pizzeria/pizzas.csv')
+            pedidos_df = pd.read_csv('pizzeria/personalizadas/pizzas.csv')
             if not pedidos_df.empty:
                 ultimo_id = pedidos_df['numero'].max()
                 nuevo_id = ultimo_id + 1

@@ -8,16 +8,18 @@ def main_pizzeria():
     print('Bienvenido a la Pizzeria Delizioso')
     precio_pizza = 0
     precio_menu = 0
+
+    # Crea un cliente
+    mi_cliente = cliente.Cliente()
+    # Llama a la funcion iniciar e inicia sesion
+    mi_cliente.iniciar()
+
     # Pregunta si desea crear una pizza personalizada
     while True:
         pedir_pizza = input("Desea crear una pizza (S/N): ")
         if pedir_pizza.lower() == "s":
             print("Precio estandar pizza personalizada 15€")
-            # Crea un cliente
-            mi_cliente = cliente.Cliente()
-            # Llama a la funcion iniciar e inicia sesion
-            mi_cliente.iniciar()
-
+            
             # Crea el director y el builder
             director = patron_builder.Director()
             builder = patron_builder.ConcreteBuilder()
@@ -58,6 +60,7 @@ def main_pizzeria():
         if pedir_menu.lower() == "s":
             menu = menus.pedir_menu()
             precio_menu = menu.obtener_precio()
+            menus.guardar_menu(menu)
             break
         elif pedir_menu.lower() == "n":
             break

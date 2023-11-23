@@ -1,3 +1,4 @@
+import pandas as pd
 from pizzeria.menus.patron_composite import MenuComposite, MenuCompuesto, Elemento
 
 # funcion para elegir bebida
@@ -122,5 +123,23 @@ def pedir_menu():
             print("Opción no válida. Intenta de nuevo.")
     return menu
 
-def precio(menu):
-    return menu.obtener_precio()
+def numero_menu():
+    try:
+        menu_df = pd.read_csv('pizzeria/menus/menus.csv')
+        if not menu_df.empty:
+            ultimo_id = menu_df['Numero'].max()
+            nuevo_id = ultimo_id + 1
+        else:
+            nuevo_id = 1
+    except FileNotFoundError:
+        nuevo_id = 1
+    return nuevo_id
+
+def guardar_menu(menu):
+    numero = numero_menu()
+    try:
+        menu_df = pd.read_csv('pizzeria/menus/menus.csv')
+    except FileNotFoundError:
+        menu_df = pd.DataFrame(columns=['Menu', 'Entrante', 'Pizza', 'Postre', 'Bebida', 'Precio', 'Numero'])
+    menu_df = pd.concat([menu_df, pd.DataFrame([{'Menu': menu.nombre, 'Entrante': menu.elementos[0].nombre, 'Pizza': menu.elementos[1].nombre, 'Postre': menu.elementos[2].nombre, 'Bebida': menu.elementos[3].nombre, 'Precio': menu.obtener_precio(), 'Numero': numero}])], ignore_index=True)
+    menu_df.to_csv('pizzeria/menus/menus.csv', index=False)
