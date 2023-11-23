@@ -31,10 +31,6 @@ class Builder(ABC):
         pass
 
     @abstractmethod
-    def produce_maridaje(self):
-        pass
-
-    @abstractmethod
     def produce_borde(self):
         pass
 
@@ -86,6 +82,7 @@ class ConcreteBuilder(Builder):
             print("5. Salsa Alfredo")
             print("6. Salsa Carbonara")
             print("7. Ninguna")
+
 
             opcion = input("Ingrese el número de la opción deseada: ")
 
@@ -193,7 +190,6 @@ class ConcreteBuilder(Builder):
             print("1. En plato")
             print("2. En caja")
             print("3. Para llevar")
-
             opcion = input("Ingrese el número de la opción deseada: ")
 
             if opcion == "1":
@@ -211,40 +207,7 @@ class ConcreteBuilder(Builder):
             else:
                 print("Opción no válida. Por favor, seleccione un número válido. \n")
 
-    def produce_maridaje(self):
-        while True:
-            print("Seleccione el número correspondiente al maridaje deseado con la pizza:")
-            print("1. Vino tinto")
-            print("2. Cerveza")
-            print("3. Agua")
-            print("4. Refresco")
-            print("5. Ninguno (sin maridaje)")
-
-            opcion = input("Ingrese el número de la opción deseada: ")
-
-            if opcion == "1":
-                self._pizza.add("Vino Tinto")
-                print('\n')
-                break
-            elif opcion == "2":
-                self._pizza.add("Cerveza")
-                print('\n')
-                break
-            elif opcion == "3":
-                self._pizza.add("Agua")
-                print('\n')
-                break
-            elif opcion == "4":
-                self._pizza.add("Refresco")
-                print('\n')
-                break
-            elif opcion == "5":
-                self._pizza.add("Sin bebida")
-                print('\n')
-                break
-            else:
-                print("Opción no válida. Por favor, seleccione un número válido. \n")
-
+    
     def produce_borde(self):
         while True:
             print("Seleccione el número correspondiente al tipo de borde de la pizza:")
@@ -335,6 +298,5 @@ class Director:
         self.builder.produce_ingredientes(cliente, pedido)
         self.builder.produce_coccion()
         self.builder.produce_presentacion()
-        self.builder.produce_maridaje()
         self.builder.produce_borde()
         self.builder.produce_extra()
