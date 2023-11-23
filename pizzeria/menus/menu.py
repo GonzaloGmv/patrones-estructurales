@@ -1,4 +1,4 @@
-from pizzeria.patron_composite import MenuComposite, MenuCompuesto, Elemento
+from pizzeria.menus.patron_composite import MenuComposite, MenuCompuesto, Elemento
 
 # funcion para elegir bebida
 def elegir_bebida():

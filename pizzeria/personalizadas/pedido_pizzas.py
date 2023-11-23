@@ -42,7 +42,7 @@ class Pedido():
         # Llama a la funcion diccionario para obtener el diccionario
         pedido_dict = self.diccionario()
         try:
-            pedidos_df = pd.read_csv('pizzeria/pizzas.csv')
+            pedidos_df = pd.read_csv('pizzeria/personalizadas/pizzas.csv')
         except FileNotFoundError:
             pedidos_df = pd.DataFrame(columns=pedido_dict.keys())
 
@@ -52,11 +52,11 @@ class Pedido():
         # Concatea el diccionario con el DataFrame de pedidos y lo guarda en el archivo CSV
         pedidos_df = pd.concat([pedidos_df, pd.DataFrame([pedido_dict])], ignore_index=True)
         pedidos_df['numero'] = pedidos_df['numero'].astype(int)
-        pedidos_df.to_csv('pizzeria/pizzas.csv', index=False)
+        pedidos_df.to_csv('pizzeria/personalizadas/pizzas.csv', index=False)
     
     # Funcion que accede a unos pedidos dada una lista de id y devuelve una lista con los ingredientes
     def ingredientes_anteriores(self, lista_id):
-        pedidos_df = pd.read_csv('pizzeria/pizzas.csv')
+        pedidos_df = pd.read_csv('pizzeria/personalizadas/pizzas.csv')
         if lista_id == 0:
             return []
         else:

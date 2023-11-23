@@ -1,7 +1,7 @@
-import pizzeria.patron_builder as patron_builder
-import pizzeria.pedido_pizzas as guardar_pedido
+import pizzeria.personalizadas.patron_builder as patron_builder
+import pizzeria.personalizadas.pedido_pizzas as guardar_pedido
 import pizzeria.cliente as cliente
-import pizzeria.menu as menus
+import pizzeria.menus.menu as menus
 import pandas as pd
 
 def main_pizzeria():
@@ -31,10 +31,10 @@ def main_pizzeria():
             pedido.guardar()
             pedido.mostrar()
             # Guarda el numero de pedido en el archivo CSV clientes.csv
-            mi_cliente.pedido_cliente(pedido)
+            mi_cliente.pedido_pizzas(pedido)
 
             # Lee el archivo CSV pedidos.csv y lo guarda en una variable
-            pedidos_df = pd.read_csv('pizzeria/pizzas.csv')
+            pedidos_df = pd.read_csv('pizzeria/personalizadas/pizzas.csv')
             # Obtiene el ultimo pedido
             ultimo_pedido = pedidos_df.iloc[-1]
             # Obtiene la parte de extras del pedido

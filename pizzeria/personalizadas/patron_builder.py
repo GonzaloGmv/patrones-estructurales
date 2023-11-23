@@ -127,7 +127,7 @@ class ConcreteBuilder(Builder):
                 print(f"{i}. {ingrediente}")
 
             # Llama a la funcion acceder_pedidos para obtener los ingredientes de los pedidos anteriores del cliente
-            ingredientes_anteriores = cliente.acceder_pedidos(pedido)
+            ingredientes_anteriores = cliente.acceder_pizzas(pedido)
             # Cuenta la frecuencia de cada ingrediente
             contador_ingredientes = Counter(ingredientes_anteriores)
             # Obtiene los 5 ingredientes más comunes
