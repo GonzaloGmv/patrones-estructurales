@@ -123,9 +123,13 @@ def pedir_menu():
             print("Opción no válida. Intenta de nuevo.")
     return menu
 
-def numero_menu():
+def numero_menu(es_simple):
+    if es_simple:
+        archivo = 'pizzeria/menus/menus_simples.csv'
+    else:
+        archivo = 'pizzeria/menus/menus_compuestos.csv'
     try:
-        menu_df = pd.read_csv('pizzeria/menus/menus.csv')
+        menu_df = pd.read_csv(archivo)
         if not menu_df.empty:
             ultimo_id = menu_df['Numero'].max()
             nuevo_id = ultimo_id + 1
@@ -136,10 +140,26 @@ def numero_menu():
     return nuevo_id
 
 def guardar_menu(menu):
-    numero = numero_menu()
-    try:
-        menu_df = pd.read_csv('pizzeria/menus/menus.csv')
-    except FileNotFoundError:
-        menu_df = pd.DataFrame(columns=['Menu', 'Entrante', 'Pizza', 'Postre', 'Bebida', 'Precio', 'Numero'])
-    menu_df = pd.concat([menu_df, pd.DataFrame([{'Menu': menu.nombre, 'Entrante': menu.elementos[0].nombre, 'Pizza': menu.elementos[1].nombre, 'Postre': menu.elementos[2].nombre, 'Bebida': menu.elementos[3].nombre, 'Precio': menu.obtener_precio(), 'Numero': numero}])], ignore_index=True)
-    menu_df.to_csv('pizzeria/menus/menus.csv', index=False)
+    # ver si es un menu simple o compuesto
+    if menu.nombre.startswith('Menu Simple'):
+        es_simple = True
+    else:
+        es_simple = False
+    # obtener el numero de menu
+    numero = numero_menu(es_simple)
+
+    # guardar el menu en el archivo CSV
+    if es_simple:
+        try:
+            menu_df = pd.read_csv('pizzeria/menus/menus_simples.csv')
+        except FileNotFoundError:
+            menu_df = pd.DataFrame(columns=['Menu', 'Entrante', 'Pizza', 'Postre', 'Bebida', 'Precio', 'Numero'])
+        menu_df = pd.concat([menu_df, pd.DataFrame([{'Menu': menu.nombre, 'Entrante': menu.elementos[0].nombre, 'Pizza': menu.elementos[1].nombre, 'Postre': menu.elementos[2].nombre, 'Bebida': menu.elementos[3].nombre, 'Precio': menu.obtener_precio(), 'Numero': numero}])], ignore_index=True)
+        menu_df.to_csv('pizzeria/menus/menus_simples.csv', index=False)
+    else:
+        try:
+            menu_df = pd.read_csv('pizzeria/menus/menus_compuestos.csv')
+        except FileNotFoundError:
+            menu_df = pd.DataFrame(columns=['Menu', 'Menu 1', 'Bebida 1', 'Menu 2', 'Bebida 2', 'Precio', 'Numero'])
+        menu_df = pd.concat([menu_df, pd.DataFrame([{'Menu': menu.nombre, 'Menu 1': menu.menu1.nombre, 'Bebida 1': menu.menu1.elementos[3].nombre, 'Menu 2': menu.menu2.nombre, 'Bebida 2': menu.menu2.elementos[3].nombre, 'Precio': menu.obtener_precio(), 'Numero': numero}])], ignore_index=True)
+        menu_df.to_csv('pizzeria/menus/menus_compuestos.csv', index=False) 
