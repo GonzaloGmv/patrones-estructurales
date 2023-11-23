@@ -50,12 +50,15 @@ class Cliente():
             else:
                 print('Opción no válida. Intenta de nuevo.')
     
-    # Funcion que obtiene el numero de pedido de la pizza y lo guarda en el archivo CSV
-    def pedido_pizzas(self, pedido):
-        # Obtiene el numero de pedido del pedido recientemente guardado
-        n_pedido = pedido.numero_pedido() -1
+    # Funcion que obtiene el numero de pedido de la pizza, menú simple o menú compuesto y lo guarda en el archivo CSV
+    def pedido_pizzas(self, pedido, tipo, individual):
+        if tipo == 'Pizzas':
+            n_pedido = pedido.numero_pedido() -1
+        else:
+            n_pedido = pedido.numero_pedido(individual) -1
+            
         user_index = self.clientes_df[self.clientes_df['Usuario'] == self.usuario].index[0]
-        pedidos_anteriores = self.clientes_df.at[user_index, 'Pedidos']
+        pedidos_anteriores = self.clientes_df.at[user_index, tipo]
         # Verifica si el cliente tiene pedidos anteriores
         if pd.notna(pedidos_anteriores):
             nuevos_pedidos = f"{pedidos_anteriores}/{n_pedido}"
@@ -63,7 +66,7 @@ class Cliente():
             nuevos_pedidos = n_pedido
 
         # Actualiza la columna 'Pedidos' con los nuevos pedidos
-        self.clientes_df.at[user_index, 'Pedidos'] = nuevos_pedidos
+        self.clientes_df.at[user_index, tipo] = nuevos_pedidos
 
         # Guarda el DataFrame actualizado en el archivo CSV
         self.clientes_df.to_csv('pizzeria/clientes.csv', index=False)
@@ -72,7 +75,7 @@ class Cliente():
     def acceder_pizzas(self, pedido):
         # Obtiene los pedidos anteriores del cliente
         user_index = self.clientes_df[self.clientes_df['Usuario'] == self.usuario].index[0]
-        pedidos_anteriores = self.clientes_df.at[user_index, 'Pedidos']
+        pedidos_anteriores = self.clientes_df.at[user_index, 'Pizzas']
         # Verifica si el cliente tiene pedidos anteriores
         if pd.isna(pedidos_anteriores):
             numero_ped = 0

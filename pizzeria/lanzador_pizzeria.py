@@ -33,7 +33,7 @@ def main_pizzeria():
             pedido.guardar()
             pedido.mostrar()
             # Guarda el numero de pedido en el archivo CSV clientes.csv
-            mi_cliente.pedido_pizzas(pedido)
+            mi_cliente.pedido_pizzas(pedido, 'Pizzas', 0)
 
             # Lee el archivo CSV pedidos.csv y lo guarda en una variable
             pedidos_df = pd.read_csv('pizzeria/personalizadas/pizzas.csv')
@@ -60,7 +60,13 @@ def main_pizzeria():
         if pedir_menu.lower() == "s":
             menu = menus.pedir_menu()
             precio_menu = menu.obtener_precio()
-            menus.guardar_menu(menu)
+            menus.guardar_menu(menu, menus.es_simple(menu))
+            # Guarda el numero de pedido en el archivo CSV clientes.csv
+            individual = menus.es_simple(menu)
+            if individual:
+                mi_cliente.pedido_pizzas(menus, 'Menus Simples', individual)
+            else:
+                mi_cliente.pedido_pizzas(menus, 'Menus Compuestos', individual)
             break
         elif pedir_menu.lower() == "n":
             break

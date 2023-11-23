@@ -123,7 +123,7 @@ def pedir_menu():
             print("Opción no válida. Intenta de nuevo.")
     return menu
 
-def numero_menu(es_simple):
+def numero_pedido(es_simple):
     if es_simple:
         archivo = 'pizzeria/menus/menus_simples.csv'
     else:
@@ -139,14 +139,15 @@ def numero_menu(es_simple):
         nuevo_id = 1
     return nuevo_id
 
-def guardar_menu(menu):
-    # ver si es un menu simple o compuesto
+def es_simple(menu):
     if menu.nombre.startswith('Menu Simple'):
-        es_simple = True
+        return True
     else:
-        es_simple = False
+        return False
+    
+def guardar_menu(menu, es_simple):
     # obtener el numero de menu
-    numero = numero_menu(es_simple)
+    numero = numero_pedido(es_simple)
 
     # guardar el menu en el archivo CSV
     if es_simple:
