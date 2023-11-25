@@ -164,3 +164,41 @@ def guardar_menu(menu, es_simple):
             menu_df = pd.DataFrame(columns=['Menu', 'Menu 1', 'Bebida 1', 'Menu 2', 'Bebida 2', 'Precio', 'Numero'])
         menu_df = pd.concat([menu_df, pd.DataFrame([{'Menu': menu.nombre, 'Menu 1': menu.menu1.nombre, 'Bebida 1': menu.menu1.elementos[3].nombre, 'Menu 2': menu.menu2.nombre, 'Bebida 2': menu.menu2.elementos[3].nombre, 'Precio': menu.obtener_precio(), 'Numero': numero}])], ignore_index=True)
         menu_df.to_csv('pizzeria/menus/menus_compuestos.csv', index=False) 
+
+# Funcion que accede a unos menus simples dada una lista de id y devuelve una lista con los elementos
+def obtener_elementos_simples(lista_id):
+    menu_df = pd.read_csv('pizzeria/menus/menus_simples.csv')
+    if lista_id == 0:
+        return []
+    else:
+        elementos = []
+        i = 0
+        for num in lista_id:
+            elementos.append([])
+            num =int(float(num))
+            elementos[i].append(menu_df[menu_df['Numero'] == num]['Menu'].iloc[0])
+            elementos[i].append(menu_df[menu_df['Numero'] == num]['Entrante'].iloc[0])
+            elementos[i].append(menu_df[menu_df['Numero'] == num]['Pizza'].iloc[0])
+            elementos[i].append(menu_df[menu_df['Numero'] == num]['Postre'].iloc[0])
+            elementos[i].append(menu_df[menu_df['Numero'] == num]['Bebida'].iloc[0])
+            i += 1
+        return elementos
+
+# Funcion que accede a unos menus compuestos dada una lista de id y devuelve una lista con los elementos
+def obtener_elementos_compuestos(lista_id):
+    menu_df = pd.read_csv('pizzeria/menus/menus_compuestos.csv')
+    if lista_id == 0:
+        return []
+    else:
+        elementos = []
+        i = 0
+        for num in lista_id:
+            elementos.append([])
+            num =int(float(num))
+            elementos[i].append(menu_df[menu_df['Numero'] == num]['Menu'].iloc[0])
+            elementos[i].append(menu_df[menu_df['Numero'] == num]['Menu 1'].iloc[0])
+            elementos[i].append(menu_df[menu_df['Numero'] == num]['Bebida 1'].iloc[0])
+            elementos[i].append(menu_df[menu_df['Numero'] == num]['Menu 2'].iloc[0])
+            elementos[i].append(menu_df[menu_df['Numero'] == num]['Bebida 2'].iloc[0])
+            i += 1
+        return elementos

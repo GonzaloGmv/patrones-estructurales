@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import warnings
+from pizzeria.menus.menu import obtener_elementos_simples, obtener_elementos_compuestos
 
 # Clase Cliente
 class Cliente():
@@ -93,3 +94,41 @@ class Cliente():
         # Llama a la funcion ingredientes_anteriores de la clase Pedido que le devuelve los ingredientes
         ingredientes = pedido.ingredientes_anteriores(numero_ped)
         return ingredientes
+    
+    # Funcion que obtiene los menus simples anteriores del cliente
+    def acceder_menu_simple(self):
+        # Obtiene los pedidos anteriores del cliente
+        user_index = self.clientes_df[self.clientes_df['Usuario'] == self.usuario].index[0]
+        pedidos_anteriores = self.clientes_df.at[user_index, 'Menus Simples']
+        # Verifica si el cliente tiene pedidos anteriores
+        if pd.isna(pedidos_anteriores):
+            numero_ped = 0
+        else:
+            # Verificar si hay solo un pedido
+            if isinstance(pedidos_anteriores, (int, np.int64)):
+                numero_ped = [pedidos_anteriores]
+            else:
+                # Si hay mas de un pedido, los separa
+                numero_ped = str(pedidos_anteriores).split('/')
+        # Llama a la funcion elementos que le devuelve los elementos del menu
+        lista_menus = obtener_elementos_simples(numero_ped)
+        return lista_menus
+    
+    # Funcion que obtiene los menus compuestos anteriores del cliente
+    def acceder_menu_compuesto(self):
+        # Obtiene los pedidos anteriores del cliente
+        user_index = self.clientes_df[self.clientes_df['Usuario'] == self.usuario].index[0]
+        pedidos_anteriores = self.clientes_df.at[user_index, 'Menus Compuestos']
+        # Verifica si el cliente tiene pedidos anteriores
+        if pd.isna(pedidos_anteriores):
+            numero_ped = 0
+        else:
+            # Verificar si hay solo un pedido
+            if isinstance(pedidos_anteriores, (int, np.int64)):
+                numero_ped = [pedidos_anteriores]
+            else:
+                # Si hay mas de un pedido, los separa
+                numero_ped = str(pedidos_anteriores).split('/')
+        # Llama a la funcion elementos que le devuelve los elementos del menu
+        lista_menus = obtener_elementos_compuestos(numero_ped)
+        return lista_menus

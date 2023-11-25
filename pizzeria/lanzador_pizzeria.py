@@ -67,10 +67,45 @@ def main_pizzeria():
                 mi_cliente.pedido_pizzas(menus, 'Menus Simples', individual)
             else:
                 mi_cliente.pedido_pizzas(menus, 'Menus Compuestos', individual)
+            print(f"El precio total de su pedido es de {precio_pizza + precio_menu} €")
             break
         elif pedir_menu.lower() == "n":
             break
         else:
             print("Opción no válida. Intenta de nuevo.")
-    print(f"El precio total de su pedido es de {precio_pizza + precio_menu} €")
+    
+
+    # Pregunta si desea ver los elementos de los menus simples anteriores:
+    elementos_simples = mi_cliente.acceder_menu_simple()
+    if elementos_simples != []:
+        while True:
+            ver_elementos = input("\nDesea ver sus menus simples anteriores (S/N): ")
+            if ver_elementos.lower() == "s":
+                for menu in elementos_simples:
+                    for elemento in menu:
+                        print(elemento)
+                    print()
+                break
+            elif ver_elementos.lower() == "n":
+                break
+            else:
+                print("Opción no válida. Intenta de nuevo.")
+    
+    # Pregunta si desea ver los elementos de los menus compuestos anteriores:
+    elementos_compuestos = mi_cliente.acceder_menu_compuesto()
+    if elementos_compuestos != []:
+        while True:
+            ver_elementos = input("\nDesea ver sus menus compuestos anteriores (S/N): ")
+            if ver_elementos.lower() == "s":
+                for menu in elementos_compuestos:
+                    print(menu[0], ":")
+                    for i in range(1, len(menu), 2):
+                        print(menu[i], "con", menu[i + 1])
+                    print()
+                break
+            elif ver_elementos.lower() == "n":
+                break
+            else:
+                print("Opción no válida. Intenta de nuevo.")
+
     print("Gracias por su visita. Hasta pronto!")
