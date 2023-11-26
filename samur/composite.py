@@ -58,9 +58,18 @@ class Carpeta(DocumentoComponent):
         for elemento in self.elementos:
             elemento.mostrar_info()
 
-    def agregar(self, componente):
-        self.elementos.append(componente)
+    def agregar(self, documento):
+        self.elementos.append(documento)
 
-    def eliminar(self, componente):
-        self.elementos.remove(componente)
-    
+    def eliminar(self):
+        # Pedir nombre del documento
+        nombre = input("Ingrese el nombre del documento: ")
+        # Buscar el documento
+        for elemento in self.elementos:
+            if elemento.nombre == nombre:
+                # Eliminar el documento de la carpeta
+                self.elementos.remove(elemento)
+                print(f"El documento {nombre} ha sido eliminado.")
+                break
+        else:
+            print(f"El documento {nombre} no existe.")

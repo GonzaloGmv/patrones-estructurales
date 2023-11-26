@@ -1,4 +1,4 @@
-from samur.composite import DocumentoComponent, Carpeta
+from samur.composite import DocumentoComponent, Documento
 
 class Proxy(DocumentoComponent):
     def __init__(self, real_component: DocumentoComponent, usuarios_autorizados):
@@ -33,5 +33,26 @@ class Proxy(DocumentoComponent):
     def mostrar_contenido(self, autorizado):
         if autorizado:
             self._real_component.mostrar_contenido()
-        
+    
+    def agregar(self, autorizado):
+        if autorizado:
+            # Pedir nombre del documento
+            nombre = input("Ingrese el nombre del documento: ")
+            # Pedir tipo de documento
+            tipo = input("Ingrese el tipo de documento: ")
+            # Pedir tamaño del documento. Asegurarse de que sea un número
+            while True:
+                try:
+                    tamano = int(input("Ingrese el tamaño del documento: "))
+                    break
+                except ValueError:
+                    print("El tamaño debe ser un número.")
+            # Crear el documento
+            documento = Documento(nombre, tipo, tamano)
+            # Agregar el documento a la carpeta
+            self._real_component.agregar(documento)
+    
+    def eliminar(self, autorizado):
+        if autorizado:
+            self._real_component.eliminar()
     
