@@ -6,6 +6,10 @@ class DocumentoComponent(ABC):
     def mostrar_info(self):
         pass
 
+    @abstractmethod
+    def obtener_tamano(self, componente):
+        pass
+
 # Hoja: Documento
 class Documento(DocumentoComponent):
     def __init__(self, nombre, tipo, tamano):
@@ -15,6 +19,9 @@ class Documento(DocumentoComponent):
 
     def mostrar_info(self):
         print(f"{self.nombre}: {self.tipo}, Tamaño: {self.tamano}")
+    
+    def obtener_tamano(self):
+        return self.tamano
 
 # Hoja: Enlace
 class Link(DocumentoComponent):
@@ -24,6 +31,9 @@ class Link(DocumentoComponent):
 
     def mostrar_info(self):
         print(f"{self.nombre}: Link a {self.vinculo}")
+    
+    def obtener_tamano(self):
+        return 0
 
 # Composite: Carpeta
 class Carpeta(DocumentoComponent):
@@ -32,7 +42,7 @@ class Carpeta(DocumentoComponent):
         self.elementos = []
 
     def mostrar_info(self):
-        print(f"Carpeta: {self.nombre}")
+        print(f"Carpeta: {self.nombre}, Tamaño total: {self.obtener_tamano()}")
 
     def agregar(self, componente):
         self.elementos.append(componente)
@@ -43,6 +53,9 @@ class Carpeta(DocumentoComponent):
     def mostrar_contenido(self):
         for elemento in self.elementos:
             elemento.mostrar_info()
+    
+    def obtener_tamano(self):
+        return sum([elemento.obtener_tamano() for elemento in self.elementos])
 
 # Ejemplo de Uso
 if __name__ == "__main__":
