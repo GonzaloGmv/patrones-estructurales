@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import warnings
-from pizzeria.menus.menu import obtener_elementos_simples, obtener_elementos_compuestos
+from pizzeria.menus.menu import Menu
 
 # Clase Cliente
 class Cliente():
@@ -53,11 +53,11 @@ class Cliente():
                 print('Opción no válida. Intenta de nuevo.')
     
     # Funcion que obtiene el numero de pedido de la pizza, menú simple o menú compuesto y lo guarda en el archivo CSV
-    def pedido_pizzas(self, pedido, tipo, individual):
+    def pedido_pizzas(self, pedido, tipo):
         if tipo == 'Pizzas':
             n_pedido = pedido.numero_pedido() -1
         else:
-            n_pedido = pedido.numero_pedido(individual) -1
+            n_pedido = pedido.numero_pedido() -1
         n_pedido = str(n_pedido)
         user_index = self.clientes_df[self.clientes_df['Usuario'] == self.usuario].index[0]
         pedidos_anteriores = self.clientes_df.at[user_index, tipo]
@@ -96,7 +96,7 @@ class Cliente():
         return ingredientes
     
     # Funcion que obtiene los menus simples anteriores del cliente
-    def acceder_menu_simple(self):
+    def acceder_menu_simple(self, menu):
         # Obtiene los pedidos anteriores del cliente
         user_index = self.clientes_df[self.clientes_df['Usuario'] == self.usuario].index[0]
         pedidos_anteriores = self.clientes_df.at[user_index, 'Menus Simples']
@@ -111,11 +111,11 @@ class Cliente():
                 # Si hay mas de un pedido, los separa
                 numero_ped = str(pedidos_anteriores).split('/')
         # Llama a la funcion elementos que le devuelve los elementos del menu
-        lista_menus = obtener_elementos_simples(numero_ped)
+        lista_menus = menu.obtener_elementos_simples(numero_ped)
         return lista_menus
     
     # Funcion que obtiene los menus compuestos anteriores del cliente
-    def acceder_menu_compuesto(self):
+    def acceder_menu_compuesto(self, menu):
         # Obtiene los pedidos anteriores del cliente
         user_index = self.clientes_df[self.clientes_df['Usuario'] == self.usuario].index[0]
         pedidos_anteriores = self.clientes_df.at[user_index, 'Menus Compuestos']
@@ -130,5 +130,5 @@ class Cliente():
                 # Si hay mas de un pedido, los separa
                 numero_ped = str(pedidos_anteriores).split('/')
         # Llama a la funcion elementos que le devuelve los elementos del menu
-        lista_menus = obtener_elementos_compuestos(numero_ped)
+        lista_menus = menu.obtener_elementos_compuestos(numero_ped)
         return lista_menus

@@ -1,7 +1,7 @@
 import pizzeria.personalizadas.patron_builder as patron_builder
 import pizzeria.personalizadas.pedido_pizzas as guardar_pedido
 import pizzeria.cliente as cliente
-import pizzeria.menus.menu as menus
+from pizzeria.menus.menu import Menu
 import pandas as pd
 
 def main_pizzeria():
@@ -58,15 +58,16 @@ def main_pizzeria():
     while True:
         pedir_menu = input("\nDesea pedir un menú (S/N): ")
         if pedir_menu.lower() == "s":
+            menus = Menu()
             menu = menus.pedir_menu()
             precio_menu = menu.obtener_precio()
-            menus.guardar_menu(menu, menus.es_simple(menu))
+            menus.guardar_menu(menu)
             # Guarda el numero de pedido en el archivo CSV clientes.csv
-            individual = menus.es_simple(menu)
+            individual = menus.simple
             if individual:
-                mi_cliente.pedido_pizzas(menus, 'Menus Simples', individual)
+                mi_cliente.pedido_pizzas(menus, 'Menus Simples')
             else:
-                mi_cliente.pedido_pizzas(menus, 'Menus Compuestos', individual)
+                mi_cliente.pedido_pizzas(menus, 'Menus Compuestos')
             print(f"El precio total de su pedido es de {precio_pizza + precio_menu} €")
             break
         elif pedir_menu.lower() == "n":
@@ -74,9 +75,13 @@ def main_pizzeria():
         else:
             print("Opción no válida. Intenta de nuevo.")
     
-
+    # ver si la variable menus existe
+    try:
+        menus
+    except NameError:
+        menus = Menu()
     # Pregunta si desea ver los elementos de los menus simples anteriores:
-    elementos_simples = mi_cliente.acceder_menu_simple()
+    elementos_simples = mi_cliente.acceder_menu_simple(menus)
     if elementos_simples != []:
         while True:
             ver_elementos = input("\nDesea ver sus menus simples anteriores (S/N): ")
@@ -92,7 +97,7 @@ def main_pizzeria():
                 print("Opción no válida. Intenta de nuevo.")
     
     # Pregunta si desea ver los elementos de los menus compuestos anteriores:
-    elementos_compuestos = mi_cliente.acceder_menu_compuesto()
+    elementos_compuestos = mi_cliente.acceder_menu_compuesto(menus)
     if elementos_compuestos != []:
         while True:
             ver_elementos = input("\nDesea ver sus menus compuestos anteriores (S/N): ")
