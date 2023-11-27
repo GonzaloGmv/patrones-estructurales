@@ -4,11 +4,13 @@ from samur.crear import CrearCarpetas
 
 def main_samur():
     # Crear carpetas
-    carpetas = CrearCarpetas()
-    carpetas.carpeta1()
-    carpetas.carpeta2()
-    carpeta1 = carpetas.lista_carpetas[0]
-    carpeta2 = carpetas.lista_carpetas[1]
+    creador_carpetas = CrearCarpetas('samur/csv/archivos.csv')
+    creador_carpetas.crear_carpetas()
+
+    # Acceder a las carpetas creadas
+    carpetas_creadas = creador_carpetas.lista_carpetas
+    carpeta1 = carpetas_creadas[0]
+    carpeta2 = carpetas_creadas[1]
 
     numero = input("A que carpeta desea acceder?(1/2): ")
     if numero == "1":

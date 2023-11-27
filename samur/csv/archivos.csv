@@ -1,0 +1,7 @@
+Carpeta,Nombre,Tipo,Tamaño,Vinculo
+Carpeta 1,Documento 1,Texto,10,
+Carpeta 1,Documento 2,Imagen,20,
+Carpeta 1,Link 1,,,Documento 1
+Carpeta 2,Documento 3,Video,10,
+Carpeta 2,Documento 4,CSV,20,
+Carpeta 2,Link 2,,,Documento 4
