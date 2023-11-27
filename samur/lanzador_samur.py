@@ -11,8 +11,8 @@ def main_samur():
     carpeta2 = carpetas.lista_carpetas[1]
 
     # Crear los proxy para controlar el acceso a las carpetas
-    proxy_carpeta1 = Proxy(carpeta1, usuarios_autorizados=["usuario1", "usuario2"])
-    proxy_carpeta2 = Proxy(carpeta2, usuarios_autorizados=["usuario2", "usuario3"])
+    proxy_carpeta1 = Proxy(carpeta1)
+    proxy_carpeta2 = Proxy(carpeta2)
 
     autorizado1 = proxy_carpeta1.acceso_documento()
     proxy_carpeta1.mostrar_info(autorizado1)
