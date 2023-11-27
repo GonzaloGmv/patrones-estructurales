@@ -1,0 +1,12 @@
+Usuario,Carpeta,Archivo,Operacion,Fecha
+gonzalo,Carpeta 1,Carpeta 1,Acceso,2023-11-27 19:07:50.924354
+gonzalo,Carpeta 1,Documento 1,Acceso,2023-11-27 19:08:25.573648
+gonzalo,Carpeta 1,Carpeta 1,Mostrar info,2023-11-27 19:08:30.640574
+gonzalo,Carpeta 1,Carpeta 1,Mostrar contenido,2023-11-27 19:08:35.180692
+gonzalo,Carpeta 1,doc,Agregar,2023-11-27 19:08:56.430812
+gonzalo,Carpeta 1,Carpeta 1,Mostrar contenido,2023-11-27 19:09:02.920648
+liam_clark,Carpeta 2,Carpeta 2,Acceso,2023-11-27 19:11:59.340550
+liam_clark,Carpeta 2,Documento 3,Acceso,2023-11-27 19:12:30.015173
+liam_clark,Carpeta 2,Carpeta 2,Mostrar info,2023-11-27 19:12:36.160669
+liam_clark,Carpeta 2,Carpeta 2,Mostrar contenido,2023-11-27 19:12:39.740849
+liam_clark,Carpeta 2,Documento 3,Eliminar,2023-11-27 19:12:53.032709

@@ -9,9 +9,9 @@ class CrearCarpetas():
         doc2 = Documento("Documento 2", "Imagen", 20)
         link1 = Link("Link 1", "Documento 1")
         carpeta1 = Carpeta("Carpeta 1")
-        carpeta1.agregar(doc1)
-        carpeta1.agregar(doc2)
-        carpeta1.agregar(link1)
+        carpeta1.add(doc1)
+        carpeta1.add(doc2)
+        carpeta1.add(link1)
         self.lista_carpetas.append(carpeta1)
     
     def carpeta2(self):
@@ -19,7 +19,7 @@ class CrearCarpetas():
         doc4 = Documento("Documento 4", "CSV", 20)
         link2 = Link("Link 2", "Documento 4")
         carpeta2 = Carpeta("Carpeta 2")
-        carpeta2.agregar(doc3)
-        carpeta2.agregar(doc4)
-        carpeta2.agregar(link2)
+        carpeta2.add(doc3)
+        carpeta2.add(doc4)
+        carpeta2.add(link2)
         self.lista_carpetas.append(carpeta2)

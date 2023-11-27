@@ -22,48 +22,37 @@ class Proxy(DocumentoComponent):
             print('El usuario no está autorizado.')
             return False
         
-    def acceso_documento(self):
+    def acceso(self):
         usuario = input("Ingrese el usuario: ")
         contrasena = input("Ingrese la contraseña: ")
         
         if self._verificar(usuario, contrasena):
-            self._real_component.acceso_documento(usuario)
-            return True
+            self._real_component.acceso(usuario)
+            return usuario
         else:
-            print(f"Acceso denegado para el usuario {usuario}.")
-            return False
+            return 0
+    
+    def acceso_documento(self, autorizado):
+        if autorizado != 0:
+            self._real_component.acceso_documento(autorizado)
         
     def mostrar_info(self, autorizado):
-        if autorizado:
-            self._real_component.mostrar_info()
+        if autorizado != 0:
+            self._real_component.mostrar_info(autorizado)
 
     def obtener_tamano(self, autorizado):
-        if autorizado:
-            return self._real_component.obtener_tamano()
+        if autorizado != 0:
+            return self._real_component.obtener_tamano(autorizado)
     
     def mostrar_contenido(self, autorizado):
-        if autorizado:
-            self._real_component.mostrar_contenido()
+        if autorizado != 0:
+            self._real_component.mostrar_contenido(autorizado)
     
     def agregar(self, autorizado):
-        if autorizado:
-            # Pedir nombre del documento
-            nombre = input("Ingrese el nombre del documento: ")
-            # Pedir tipo de documento
-            tipo = input("Ingrese el tipo de documento: ")
-            # Pedir tamaño del documento. Asegurarse de que sea un número
-            while True:
-                try:
-                    tamano = int(input("Ingrese el tamaño del documento: "))
-                    break
-                except ValueError:
-                    print("El tamaño debe ser un número.")
-            # Crear el documento
-            documento = Documento(nombre, tipo, tamano)
-            # Agregar el documento a la carpeta
-            self._real_component.agregar(documento)
+        if autorizado != 0:
+            self._real_component.agregar(autorizado)
     
     def eliminar(self, autorizado):
-        if autorizado:
-            self._real_component.eliminar()
+        if autorizado != 0:
+            self._real_component.eliminar(autorizado)
     
