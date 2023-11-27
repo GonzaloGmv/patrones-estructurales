@@ -32,7 +32,9 @@ class Link(DocumentoComponent):
         self.vinculo = vinculo
 
     def mostrar_info(self):
-        print(f"{self.nombre}: Link a {self.vinculo}")
+        print(f"{self.nombre}: Link a {self.vinculo.nombre}")
+        print("Información del documento vinculado:")
+        self.vinculo.mostrar_info()
     
     def obtener_tamano(self):
         return 0
@@ -94,6 +96,19 @@ class Carpeta(DocumentoComponent):
         registro.to_csv("samur/csv/registro.csv", index=False)
 
     def agregar(self, usuario):
+        # Preguntar si va a crear un documento o un enlace
+        print("¿Qué desea agregar?")
+        print("1. Documento")
+        print("2. Enlace")
+        opcion = input("Opción: ")
+        if opcion == "1":
+            self.agregar_documento(usuario)
+        elif opcion == "2":
+            self.agregar_enlace(usuario)
+        else:
+            print("Opción no válida.")
+    
+    def agregar_documento(self, usuario):
         # Pedir nombre del documento
         nombre = input("Ingrese el nombre del documento: ")
         # Pedir tipo de documento
@@ -115,6 +130,28 @@ class Carpeta(DocumentoComponent):
         nueva_fila = pd.DataFrame({'Usuario': [usuario], 'Carpeta': [self.nombre], 'Archivo': [nombre],'Operacion':['Agregar'], 'Fecha': [datetime.now()]})
         registro = pd.concat([registro, nueva_fila], ignore_index=True)
         registro.to_csv("samur/csv/registro.csv", index=False)
+    
+    def agregar_enlace(self, usuario):
+        # Pedir nombre del enlace
+        nombre = input("Ingrese el nombre del enlace: ")
+        # Pedir nombre del documento vinculado
+        nombre_vinculo = input("Ingrese el nombre del documento vinculado: ")
+        # Buscar el documento vinculado
+        for elemento in self.elementos:
+            if elemento.nombre == nombre_vinculo:
+                # Crear el enlace
+                enlace = Link(nombre, elemento)
+                # Agregar el enlace a la carpeta
+                self.elementos.append(enlace)
+                print(f"El enlace {nombre} ha sido agregado.")
+                # Guardar registro en el csv
+                registro = pd.read_csv("samur/csv/registro.csv")
+                nueva_fila = pd.DataFrame({'Usuario': [usuario], 'Carpeta': [self.nombre], 'Archivo': [nombre],'Operacion':['Agregar'], 'Fecha': [datetime.now()]})
+                registro = pd.concat([registro, nueva_fila], ignore_index=True)
+                registro.to_csv("samur/csv/registro.csv", index=False)
+                break
+        else:
+            print(f"El documento {nombre_vinculo} no existe en esta carpeta.")
 
     def eliminar(self, usuario):
         # Pedir nombre del documento
