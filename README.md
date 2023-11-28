@@ -15,7 +15,7 @@ En la clase cliente están las funciones encargadas de enviar la lista de númer
 Por último tenemos el lanzador final de la pizzería. En primer lugar te pregunta si quieres crear una pizza y luego lo mismo con el menú. A continuación muestra el precio total del pedido, y por último te pregunta si quieres ver los menús pedidos anteriormente.
 
 
-## Pruebas unitarias:
+## Pruebas unitarias de la Pizzería:
 
 A la hora de registrar un usuario podemos ver como si el usuario y la contraseña no existen o no coinciden no te deja entrar:
 
