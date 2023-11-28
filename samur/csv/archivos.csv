@@ -1,5 +1,4 @@
 Carpeta,Nombre,Tipo,Tamaño,Vinculo
-Carpeta 1,Documento 1,Texto,10.0,
 Carpeta 1,Link 1,,,Documento 1
 Carpeta 2,Documento 3,Video,10.0,
 Carpeta 2,Documento 4,CSV,20.0,
@@ -7,3 +6,5 @@ Carpeta 2,Link 2,,,Documento 4
 Carpeta 1,Doc 5,Texto,20.0,
 Carpeta 1,Link 3,,,Doc 5
 Carpeta 1,Documento 2,GIF,33.0,
+Carpeta 1,Documento Prueba,Texto,33.0,
+Carpeta 1,Link prueba 2,,,Documento Prueba

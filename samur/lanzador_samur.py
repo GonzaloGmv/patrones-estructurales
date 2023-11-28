@@ -12,6 +12,8 @@ def main_samur():
     carpeta1 = carpetas_creadas[0]
     carpeta2 = carpetas_creadas[1]
 
+    autorizado = 0
+    
     numero = input("A que carpeta desea acceder?(1/2): ")
     if numero == "1":
         proxy_carpeta = Proxy(carpeta1)
