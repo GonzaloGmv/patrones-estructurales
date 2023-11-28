@@ -42,4 +42,26 @@ Por último te devuelve tu pizza y la añade al csv:
 
 ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/6e7d1c4a-24b6-40b9-9267-e3efc2fb28a0)
 
+Al igual que antes, a continuación te pregunta si deseas pedir un menú y si le devuelves s o S te imprime los menús que hay y te pregunta si deseas el menú simple o compuesto:
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/e9e98684-cec0-4ca1-b298-3d8ab357e974)
+
+Si le devuelves una s o S te dará a elegir un menú simple y una bebida y por ultimo te devolverá el precio total del pedido, sumando el precio de la pizza y del menú si es que se han pedido los dos, o solo el precio de la pizza o del menú en caso de que sea solo uno de esos. En este caso se ha pedido menú simple y pizza personalizada.
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/f2a4d0d9-123d-449d-8034-a8a9e7e40a94)
+
+Si lo que le devuelve el usuario es una c o C te preguntará por el menú compuesto que deseas pedir y luego preguntará por las bebidas que se añadirán a cada menú. Luego devuelve el precio total del pedido. En este caso sólo se ha pedido un menú compuesto.
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/25bf4fc7-36ba-4e29-9e0c-12154f786117)
+
+Por último, si el cliente había pedido algún menú simple anteriormente le pregunta si desea ver los menús simples pedidos anteriormente y luego lo mismo con los menús compuestos.
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/8a52aa98-4d66-4c4a-86d1-3dd611c02aa2)
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/0cb8816f-bcfb-4183-9ed8-8c7c9cc08bde)
+
+En el siguiente ejemplo podemos ver como el cliente sólo había pedido anteriormente un menú simple y ninguno compuesto, por lo que sólo se le pregunta si desea ver los menús simples anteriores:
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/269eee91-2773-431a-a3d2-c4124ddfd970)
+
 
