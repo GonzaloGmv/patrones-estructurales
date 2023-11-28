@@ -921,3 +921,32 @@ def main_pizzeria():
 
     print("Gracias por su visita. Hasta pronto!")
 ```
+
+## Pruebas unitarias:
+
+A la hora de registrar un usuario podemos ver como si el usuario y la contraseña no existen o no coinciden no te deja entrar:
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/0d379df2-6f0d-4a0b-a2e3-2de0f817570c)
+
+Además podemos crear un usuario nuevo en caso de que este nunca se haya registrado:
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/24bdc82e-e804-41dc-99bf-300f4cbccf3a)
+
+A continuación te preguntará si desea pedir una pizza, y al igual que en todos los inputs de esta práctica, si el usuario no escribe una de las opciones sugeridas se lo preguntará de nuevo:
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/a633a499-23d8-4b71-962f-1220120a90c8)
+
+Si escribes s o S empezará, mediante el builder, a preguntarte por la masa, salsa, ingredientes, cocción, presentación, bordes y extras gourmet. Tanto en ingredientes como
+en los extras gourmet te dejara pedir uno o más siempre y cuando lo separes por comas:
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/3f4f91c2-6835-40f3-bb10-c1705970e128)
+
+Una cosa a destacar es que si el usuario ya ha hecho más de un pedido, el programa accede a sus pedidos anteriores, y a la hora de elegir los ingredientes, se le sugieren los 5 ingredientes más pedidos por el:
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/1cdc34fa-fa2e-4d2a-b477-333d19e17cc4)
+
+Por último te devuelve tu pizza y la añade al csv:
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/6e7d1c4a-24b6-40b9-9267-e3efc2fb28a0)
+
+
