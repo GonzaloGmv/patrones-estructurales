@@ -65,3 +65,101 @@ En el siguiente ejemplo podemos ver como el cliente sólo había pedido anterior
 ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/269eee91-2773-431a-a3d2-c4124ddfd970)
 
 
+# Ejercicio 2. Samur
+
+En primer lugar tenemos el patrón composite que modela la estructura de documentos. Además las hojas tienen unas funciones para mostrar la informacion y la clase carpeta tiene unas funciones para mostrar el contenido, añadir documentos o eliminarlos y para acceder a ellos. 
+
+Para crear la carpeta con los archivos hay una clase CrearCarpetas que lee un csv donde están los archivos y los crea usando el composite. 
+
+Por último, por medio del proxy se comprueba si el usuario está autorizado o no y se le da permiso a acceder a las carpetas.
+
+## Pruebas unitarias del Samur
+
+Para empezar pregunta a qué carpeta se desea acceder, y si el usuario no da un número o da un número que no sea el de ninguna carpeta, no le da acceso:
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/f35d7017-d5c4-4a39-9a72-b5d0b26b14dd)
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/7912dff8-d1b4-40ea-8628-65031aa8b0af)
+
+Después de esto le pide el usuario y la contraseña y se comprueba si ese usuario está en el csv, en caso de que no esté significa que no está autorizado. En caso de que ese usuario esté en el csv luego se comprueba si la contraseña coincide.
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/44d0e4ba-d51d-4ae4-970f-73182f9c41ea)
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/a3de17b4-04a3-41e1-8715-a7e7e342219c)
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/276d702a-aacd-4df5-b577-e84b2c88ca42)
+
+Una vez se haya iniciado sesión correctamente y el usuario sea autorizado se le pregunta que desea hacer. En caso de que el usuario escriba algo que no se le pide se le vuelve a preguntar.
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/ee954ada-7e7e-467a-9841-01c8c867ebb1)
+
+Una vez el usuario escoja una acción que hacer, se realizará esta acción y se le preguntará otra vez por si desea hacer algo más.
+
+1. Acceder a un documento de la carpeta: Se le pregunta el nombre del archivo al que desea acceder. Si el documento no existe se le devolverá un mensaje diciéndoselo. Si el documento sí que existe se le devolverá la información de este documento. 
+
+    ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/3bdfb4ce-d6cb-4c43-8528-55094d5828fe)
+
+    ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/99999958-746a-42ba-ab1a-41eea64459c6)
+
+    Si ese documento es un link,, se le devolverá la información de ese link y del archivo vinculado.
+   
+   ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/c965ce3f-6236-40bd-aa6e-b9bb1dd0c3f0)
+
+2. Mostrar información de la carpeta: Devuelve el nombre de la carpeta y el tamaño de esta.
+
+   ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/7f90b5bc-e392-4f13-9d30-254877da1c3d)
+
+3. Mostrar contenido de la carpeta: Muestra los archivos que hay dentro de esta carpeta.
+
+   ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/4646bcd4-576e-4963-971a-3e21a654bce9)
+
+4. Agregar un documento a la carpeta: Pide si quiere añadir un enlace o un documento. En caso de añadir un documento se le pedirá el nombre, el tipo y el tamaño, pero el tamaño sebe ser un número.
+
+   ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/605f808a-d2de-422f-a974-8d17967d85d5)
+
+   En caso de añadir un enlace se le pedirá el nombre de este y el nombre del archivo vinculado. En caso de que el archivo vinculado no exista, no se creará el enlace.
+
+   ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/82f46806-038d-41d0-9cec-d5e95689d928)
+
+   ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/751232ea-aecf-4385-b0a4-e73488599dc5)
+
+   Ahora si mostramos el contenido de esta carpeta podemos ver como han sido creados con éxito y como el Link de Prueba enlazado a un documento inexistente no ha sido creado.
+
+   ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/e77477e2-a4e3-4654-9fa2-7d4bb076dd37)
+
+   También podemos acceder al enlace para ver que ha sido creado correctamente
+
+   ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/474a0db3-9ded-4777-b6c4-037dc2c8a459)
+
+
+5. Eliminar un documento de la carpeta. Pregunta el nombre del documento que se desea eliminar. Si este documento no existe mostrará un mensaje y no hará nada.
+
+   ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/94e7fc31-d17b-4399-b039-c241ad4ee99d)
+
+   En caso de que el documento exista e eliminará.
+
+   ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/5513da2a-8cb4-4072-b532-b210bb565a10)
+
+   Podemos mostrar el contenido de la carpeta y veremos como no existe ya el documento eliminado.
+
+   ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/514a06ac-1a72-4e1f-aff7-cbe06566ae71)
+
+6. Salir. Sale del programa.
+
+Una vez hemos salido, si ejecutamos otra vez el programa y mostramos el contenido de la carpeta modificada podemos ver como los cambios se han guardado correctamente aún habiendo cerrado el programa.
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/78e54577-eebf-4270-9609-3522964dff6e)
+
+Si vemos, el csv de archivos se ha actualizado.
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/ba81c145-0460-4d28-8bf6-162e81e2283f)
+
+Y en el csv con los registros se han registrado las operaciones realizadas, incluida la hora.
+
+![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/7cfee002-ad53-4b9c-affd-dff94b62bf2b)
+
+
+
+
+
+
