@@ -33,7 +33,7 @@ def main_pizzeria():
             pedido.guardar()
             pedido.mostrar()
             # Guarda el numero de pedido en el archivo CSV clientes.csv
-            mi_cliente.pedido_pizzas(pedido, 'Pizzas', 0)
+            mi_cliente.pedido_pizzas(pedido, 'Pizzas')
 
             # Lee el archivo CSV pedidos.csv y lo guarda en una variable
             pedidos_df = pd.read_csv('pizzeria/personalizadas/pizzas.csv')
