@@ -64,6 +64,12 @@ En el siguiente ejemplo podemos ver como el cliente sólo había pedido anterior
 
 ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/269eee91-2773-431a-a3d2-c4124ddfd970)
 
+## UML
+
+Este es el UML un poco simplificado del ejercicio 1:
+
+![UML_pizzeria](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/9becca60-046c-48fe-bd76-e4f9441d6381)
+
 
 # Ejercicio 2. Samur
 
@@ -159,6 +165,11 @@ Y en el csv con los registros se han registrado las operaciones realizadas, incl
 ![image](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/7cfee002-ad53-4b9c-affd-dff94b62bf2b)
 
 
+## UML
+
+Este es el UML del ejercicio 2.
+
+![UML_samur](https://github.com/GonzaloGmv/patrones-estructurales/assets/91721237/98fd37ce-1330-4dba-a3de-e5650f8bc887)
 
 
 
