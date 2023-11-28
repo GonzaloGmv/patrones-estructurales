@@ -130,6 +130,11 @@ class Carpeta(DocumentoComponent):
         nueva_fila = pd.DataFrame({'Usuario': [usuario], 'Carpeta': [self.nombre], 'Archivo': [nombre],'Operacion':['Agregar'], 'Fecha': [datetime.now()]})
         registro = pd.concat([registro, nueva_fila], ignore_index=True)
         registro.to_csv("samur/csv/registro.csv", index=False)
+        # Guardar el documento en el csv
+        archivos = pd.read_csv("samur/csv/archivos.csv")
+        nueva_fila = pd.DataFrame({'Carpeta': [self.nombre], 'Nombre': [nombre], 'Tipo': [tipo], 'Tamaño': [tamano], 'Vinculo': [None]})
+        archivos = pd.concat([archivos, nueva_fila], ignore_index=True)
+        archivos.to_csv("samur/csv/archivos.csv", index=False)
     
     def agregar_enlace(self, usuario):
         # Pedir nombre del enlace
@@ -149,6 +154,11 @@ class Carpeta(DocumentoComponent):
                 nueva_fila = pd.DataFrame({'Usuario': [usuario], 'Carpeta': [self.nombre], 'Archivo': [nombre],'Operacion':['Agregar'], 'Fecha': [datetime.now()]})
                 registro = pd.concat([registro, nueva_fila], ignore_index=True)
                 registro.to_csv("samur/csv/registro.csv", index=False)
+                # Guardar el link en el csv
+                archivos = pd.read_csv("samur/csv/archivos.csv")
+                nueva_fila = pd.DataFrame({'Carpeta': [self.nombre], 'Nombre': [nombre], 'Tipo': [None], 'Tamaño': [None], 'Vinculo': [nombre_vinculo]})
+                archivos = pd.concat([archivos, nueva_fila], ignore_index=True)
+                archivos.to_csv("samur/csv/archivos.csv", index=False)
                 break
         else:
             print(f"El documento {nombre_vinculo} no existe en esta carpeta.")
@@ -167,6 +177,11 @@ class Carpeta(DocumentoComponent):
                 nueva_fila = pd.DataFrame({'Usuario': [usuario], 'Carpeta': [self.nombre], 'Archivo': [nombre],'Operacion':['Eliminar'], 'Fecha': [datetime.now()]})
                 registro = pd.concat([registro, nueva_fila], ignore_index=True)
                 registro.to_csv("samur/csv/registro.csv", index=False)
+                # Eliminar el documento del csv
+                archivos = pd.read_csv("samur/csv/archivos.csv")
+                index = archivos.index[archivos['Nombre'] == nombre].tolist()[0]
+                archivos = archivos.drop(index)
+                archivos.to_csv("samur/csv/archivos.csv", index=False)
                 break
         else:
             print(f"El documento {nombre} no existe.")
